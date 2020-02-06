@@ -62,8 +62,8 @@ set autoread        " Auto load files if they change on disc
 map <Leader>p :set paste<CR><esc>"*p:set nopaste<cr>
 map <Leader>y "*y  )
 map <Leader><Leader> :w<CR>
+map <Leader>q :wq<CR>
 inoremap jj <ESC>:w<CR>
-
 " Pasting - indent last pasted
 nnoremap gz '[=']
 
@@ -93,8 +93,10 @@ nnoremap ˙ gT
 nnoremap ¬ gt
 nnoremap T :tabnew<cr>
 
-" Use K to split lines
+" split lines
 nnoremap K i<CR><Esc>
+nnoremap <CR> o<Esc>k
+
 " Open new splits to right and bottom
 set splitbelow
 set splitright
@@ -130,3 +132,7 @@ map <up> <nop>
 map <down> <nop>
 map <left> <nop>
 map <right> <nop>
+
+" make it easy to edit vimrc
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
