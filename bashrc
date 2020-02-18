@@ -31,6 +31,12 @@ shortwd() {
     echo -n $newPWD
 }
 
-export PS1="\u:\[\033[34m\]\$(shortwd)\$(gb) $ \[\033[00m\]"
+if [ -n "$SSH_CLIENT" ]; then
+  host="@\h"
+else
+  host=""
+fi
+
+export PS1="\u${host}:\[\033[34m\]\$(shortwd)\$(gb) $ \[\033[00m\]"
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
