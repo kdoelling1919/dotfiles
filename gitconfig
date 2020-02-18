@@ -5,3 +5,5 @@
 [user]
 	name = kdoelling1919
 	email = kd889@nyu.edu
+[core]
+  filemode = false
