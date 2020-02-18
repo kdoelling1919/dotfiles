@@ -6,11 +6,12 @@ fi
 
 # functions for prompt customization
 gb() {
-  branch=$( git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/' )
+  branch=$( git branch 2> /dev/null | sed -e '/^[^*]/d' \
+    -e 's/* \(.*\)/ [\1]/' )
   if [ -z $branch ]; then
     color="\033[00m"
   else
-    if ( git status | grep -qe "Changes not staged" -e "Untracked files" );then
+    if [[ $( git status -s 2> /dev/null) ]];then
       color="\033[33m"
     else
       color="\033[32m"
