@@ -27,6 +27,7 @@ Plugin 'sheerun/vim-polyglot'   " syntax highlighting in most languages
 Plugin 'jpalardy/vim-slime'
 Plugin 'joshdick/onedark.vim'
 Plugin 'danilo-augusto/vim-afterglow'
+Plugin 'raingo/vim-matlab'
 call vundle#end()
 " All of your Plugins must be added before the following line
 filetype plugin indent on
@@ -66,6 +67,7 @@ map <Leader>q :wq<CR>
 inoremap jj <ESC>:w<CR>
 " Pasting - indent last pasted
 nnoremap gz '[=']
+nnoremap <leader>; @='A;<C-V><Esc>j'<CR>
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><ESC> :noh<cr>
@@ -79,10 +81,6 @@ else
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
-" Open current file in a new vertical split with '='
-nnoremap = :vsplit<cr>
-
-" Easy split navigation
 map <C-j> <C-w>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
@@ -92,10 +90,10 @@ map <C-l> <C-W>l
 nnoremap ˙ gT
 nnoremap ¬ gt
 nnoremap T :tabnew<cr>
-
+nnoremap Te :tabedit<Space>
 " split lines
 nnoremap K i<CR><Esc>
-nnoremap <CR> o<Esc>k
+nnoremap <CR> m`o<Esc>``
 
 " Open new splits to right and bottom
 set splitbelow
