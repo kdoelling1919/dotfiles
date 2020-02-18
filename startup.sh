@@ -24,6 +24,18 @@ done
 
 # Move windows to their respective workspaces
 wmctrl -r thunderbird -t 1
+while (( $(wmctrl -d | wc -l) <= 2 ))
+do
+  sleep 0.5
+done
 wmctrl -r slack -t 2
+while (( $(wmctrl -d | wc -l) <= 3 ))
+do
+  sleep 0.5
+done
 wmctrl -r firefox -t 3
+while (( $(wmctrl -d | wc -l) <= 4 ))
+do
+  sleep 0.5
+done
 wmctrl -s 0
