@@ -20,4 +20,6 @@ shortwd() {
     echo -n $newPWD
 }
 
-export PS1="\u:\[\033[36m\]\$(shortwd)\[\033[32m\]\$(gb) $ \[\033[00m\]"
+export PS1="\u:\[\033[34m\]\$(shortwd)\[\033[32m\]\$(gb) $ \[\033[00m\]"
+export CLICOLOR=1
+export LSCOLORS=ExFxBxDxCxegedabagacad
