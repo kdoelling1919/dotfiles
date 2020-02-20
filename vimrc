@@ -1,4 +1,4 @@
-" ================================
+" ================================;
 " Welcome to Keith's vimrc file
 " ================================
 
@@ -37,6 +37,8 @@ filetype plugin indent on
 " --------------------------------
 syntax on
 colorscheme afterglow
+" Let after glow inherit background so tmuxcan gray it out
+let g:afterglow_inherit_background = 1
 " Set Airline bar theme
 let g:airline_theme = 'afterglow'
 "rainbow Plugin Options (luochen1990/rainbow)
@@ -67,8 +69,8 @@ map <Leader>q :wq<CR>
 inoremap jj <ESC>:w<CR>
 " Pasting - indent last pasted
 nnoremap gz '[=']
-nnoremap <leader>; @='A;<C-V><Esc>j'<CR>
-
+nnoremap ;; @='<C-V><Esc>A;<C-V><Esc>j'<CR>
+inoremap ;; <Esc>m`A;<Esc>``
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><ESC> :noh<cr>
 
