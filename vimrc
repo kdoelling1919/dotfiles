@@ -134,3 +134,5 @@ map <right> <nop>
 " make it easy to edit vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+
+autocmd FileType matlab setlocal commentstring=\%\ %s
