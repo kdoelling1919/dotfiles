@@ -36,9 +36,9 @@ filetype plugin indent on
 " Pretty things
 " --------------------------------
 syntax on
-colorscheme afterglow
 " Let after glow inherit background so tmuxcan gray it out
 let g:afterglow_inherit_background = 1
+colorscheme afterglow
 " Set Airline bar theme
 let g:airline_theme = 'afterglow'
 "rainbow Plugin Options (luochen1990/rainbow)
