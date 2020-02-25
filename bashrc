@@ -40,7 +40,7 @@ fi
 gb() {
   branch=$( git branch 2> /dev/null | sed -e '/^[^*]/d' \
     -e 's/* \(.*\)/ [\1]/' )
-  if [ -z $branch ]; then
+  if [ -z "$branch" ]; then
     color="\001\033[00m\002"
   else
     if [[ $( git status -s 2> /dev/null) ]];then
@@ -49,18 +49,17 @@ gb() {
       color="\001\033[32m\002"
     fi
   fi
-  echo -e $color$branch
+  echo -e "$color$branch"
 }
 
 shortwd() {
     num_dirs=3
     pwd_symbol="..."
     newPWD="${PWD/#$HOME/~}"
-    if [ $(echo -n $newPWD | awk -F '/' '{print NF}') -gt $num_dirs ]; then
-        newPWD=$(echo -n $newPWD | awk -F '/' '{print ".../" $(NF-1) "/" \
-          $(NF)}')
+    if [ "$(echo -n "$newPWD" | awk -F '/' '{print NF}')" -gt "$num_dirs" ]; then
+        newPWD="$(echo -n "$newPWD" | awk -F '/' '{print ".../" $(NF-1) "/" $(NF)}')"
     fi
-    echo -n $newPWD
+    echo -n "$newPWD"
 }
 
 if [ -n "$SSH_CLIENT" ]; then
@@ -75,7 +74,6 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
@@ -92,6 +90,3 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-
-
-

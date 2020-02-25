@@ -1,3 +1,5 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
 " ================================;
 " Welcome to Keith's vimrc file
 " ================================
@@ -5,11 +7,9 @@
 " --------------------------------
 " Plugins
 " --------------------------------
-set nocompatible              " be iMproved, required
-filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
@@ -28,10 +28,18 @@ Plugin 'jpalardy/vim-slime'
 Plugin 'joshdick/onedark.vim'
 Plugin 'danilo-augusto/vim-afterglow'
 Plugin 'raingo/vim-matlab'
+Plugin 'dense-analysis/ale'
 call vundle#end()
 " All of your Plugins must be added before the following line
 filetype plugin indent on
+" --------------------------------
+" Linters & Fixers
+" --------------------------------
+let g:ale_linters = {'python': ['flake8', 'pydocstyle'], 'matlab': ['mlint']}
+let g:ale_fixers = {'python': ['black', 'isort'], '*': ['trim_whitespace', 'remove_trailing_lines']}
 
+let g:ale_lint_on_text_changed = 1
+let g:ale_fix_on_save = 1
 " --------------------------------
 " Pretty things
 " --------------------------------
@@ -42,18 +50,19 @@ colorscheme afterglow
 " Set Airline bar theme
 let g:airline_theme = 'afterglow'
 "rainbow Plugin Options (luochen1990/rainbow)
-let g:rainbow_active = 1    " 0 if you want to enable it later via :RainbowToggle
+let g:rainbow_active = 1
 
-" Colour at column 80
-set colorcolumn=80
+" Colour at column 88
+set colorcolumn=88
 
 " Set vim-slime to tmux
-let g:slime_target = "tmux"
+let g:slime_target = 'tmux'
 let g:slime_python_ipython = 1
+
 " --------------------------------
 " Basic stuff
 " --------------------------------
-let g:mapleader = " " " Set leader to spacebar
+let g:mapleader = ' ' " Set leader to spacebar
 set spelllang=en_us
 set backspace=indent,eol,start " Bring backspace to life
 set number          " Line numbers
@@ -106,7 +115,7 @@ set wildmenu
 set wildmode=list:longest,list:full
 function! InsertTabWrapper()
   let col = col('.') - 1
-  if !col || getline('.')[col - 1] !~ '\k'
+  if !col || getline('.')[col - 1] !~? '\k'
     return "\<tab>"
   else
     return "\<c-p>"
@@ -134,7 +143,11 @@ map <left> <nop>
 map <right> <nop>
 
 " make it easy to edit vimrc
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>ev :tabedit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
-autocmd FileType matlab setlocal commentstring=\%\ %s
+augroup vimrc
+    autocmd!
+    autocmd FileType matlab setlocal commentstring=\%\ %s
+    autocmd CursorHoldI * stopinsert
+augroup END
