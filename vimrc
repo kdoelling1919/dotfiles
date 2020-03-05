@@ -75,11 +75,13 @@ map <Leader>p :set paste<CR><esc>"*p:set nopaste<cr>
 map <Leader>y "*y  )
 map <Leader><Leader> :w<CR>
 map <Leader>q :wq<CR>
+map <Leader>j <Plug>(ale_next_wrap)
+map <Leader>k <Plug>(ale_previous_wrap)
 inoremap jj <ESC>:w<CR>
 " Pasting - indent last pasted
-nnoremap gz '[=']
 nnoremap ;; @='<C-V><Esc>A;<C-V><Esc>j'<CR>
 inoremap ;; <Esc>m`A;<Esc>``
+
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><ESC> :noh<cr>
 
