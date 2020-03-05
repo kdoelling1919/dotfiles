@@ -1,5 +1,3 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
 " ================================;
 " Welcome to Keith's vimrc file
 " ================================
@@ -9,6 +7,7 @@ filetype off                  " required
 " --------------------------------
 
 " set the runtime path to include Vundle and initialize
+filetype off                  " required
 set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -38,7 +37,9 @@ filetype plugin indent on
 let g:ale_linters = {'python': ['flake8', 'pydocstyle'], 'matlab': ['mlint']}
 let g:ale_fixers = {'python': ['black', 'isort'], '*': ['trim_whitespace', 'remove_trailing_lines']}
 
-let g:ale_lint_on_text_changed = 1
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_save = 1
 let g:ale_fix_on_save = 1
 " --------------------------------
 " Pretty things
