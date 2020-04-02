@@ -1,7 +1,8 @@
 " ================================;
 " Welcome to Keith's vimrc file
 " ================================
-
+set encoding=utf-8
+scriptencoding utf-8
 " --------------------------------
 " Plugins
 " --------------------------------
@@ -18,6 +19,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary' " gc to comment out
+Plugin 'tpope/vim-ragtag'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'luochen1990/rainbow'
@@ -27,6 +29,7 @@ Plugin 'jpalardy/vim-slime'
 Plugin 'joshdick/onedark.vim'
 Plugin 'danilo-augusto/vim-afterglow'
 Plugin 'raingo/vim-matlab'
+Plugin 'jelera/vim-javascript-syntax'
 Plugin 'dense-analysis/ale'
 call vundle#end()
 " All of your Plugins must be added before the following line
@@ -34,8 +37,17 @@ filetype plugin indent on
 " --------------------------------
 " Linters & Fixers
 " --------------------------------
-let g:ale_linters = {'python': ['flake8', 'pydocstyle'], 'matlab': ['mlint']}
-let g:ale_fixers = {'python': ['black', 'isort'], '*': ['trim_whitespace', 'remove_trailing_lines']}
+let g:ale_linters = {
+            \ 'python': ['flake8', 'pydocstyle'],
+            \ 'matlab': ['mlint'],
+            \ 'javascript': ['eslint'],
+            \ }
+let g:ale_fixers = {
+            \ 'python': ['black', 'isort'],
+            \ '*': ['trim_whitespace', 'remove_trailing_lines'],
+            \ 'javascript': ['prettier'],
+            \ 'html': ['prettier'],
+            \ }
 
 let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_on_text_changed = 0
@@ -46,7 +58,9 @@ let g:ale_fix_on_save = 1
 " --------------------------------
 syntax on
 " Let after glow inherit background so tmuxcan gray it out
-let g:afterglow_inherit_background = 1
+if exists('$TMUX')
+    let g:afterglow_inherit_background = 1
+endif
 colorscheme afterglow
 " Set Airline bar theme
 let g:airline_theme = 'afterglow'
@@ -68,7 +82,7 @@ set spelllang=en_us
 set backspace=indent,eol,start " Bring backspace to life
 set number          " Line numbers
 set relativenumber  " Relative line numbers
-set hlsearch        " Highlight whole word when searching
+set nohlsearch        " Highlight whole word when searching
 set ignorecase      " Ignore case when searching...
 set smartcase       " ...except when serach query contains a capital letter
 set autoread        " Auto load files if they change on disc
@@ -78,6 +92,12 @@ map <Leader><Leader> :w<CR>
 map <Leader>q :wq<CR>
 map <Leader>j <Plug>(ale_next_wrap)
 map <Leader>k <Plug>(ale_previous_wrap)
+map <Leader>c /%%<CR>
+map <Leader>C ?%%<CR>
+map <Leader>~ bi~<Esc>
+" TODO: This only works if there is a %% on each side. We need to figure out how to
+" include beginning and end of file in there.
+" map <Leader>sc ?%%<CR>jVnk
 inoremap jj <ESC>:w<CR>
 " Pasting - indent last pasted
 nnoremap ;; @='<C-V><Esc>A;<C-V><Esc>j'<CR>
@@ -107,7 +127,7 @@ nnoremap T :tabnew<cr>
 nnoremap Te :tabedit<Space>
 " split lines
 nnoremap K i<CR><Esc>
-nnoremap <CR> m`o<Esc>``
+nnoremap <CR> o<Esc>
 
 " Open new splits to right and bottom
 set splitbelow
@@ -152,5 +172,8 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 augroup vimrc
     autocmd!
     autocmd FileType matlab setlocal commentstring=\%\ %s
+    autocmd FileType javascript setlocal commentstring=\%\ %s
     autocmd CursorHoldI * stopinsert
+    " autocmd FileType javascript colorscheme onedark
+    autocmd BufEnter *.html :syntax sync fromstart
 augroup END
