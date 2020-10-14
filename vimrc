@@ -31,9 +31,20 @@ Plugin 'danilo-augusto/vim-afterglow'
 Plugin 'raingo/vim-matlab'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'dense-analysis/ale'
+Plugin 'iamcco/markdown-preview.nvim'
 call vundle#end()
 " All of your Plugins must be added before the following line
 filetype plugin indent on
+"---------------------------------
+" Markdown issues
+"---------------------------------
+call mkdp#util#install()
+let g:os = system('uname')
+if g:os == 'Darwin\n'
+    let g:mkdp_path_to_chrome = 'open -a firefox'
+else
+    let g:mkdp_path_to_chrome = 'firefox'
+endif
 " --------------------------------
 " Linters & Fixers
 " --------------------------------
