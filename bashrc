@@ -1,6 +1,9 @@
 if [ -d "$HOME/miniconda3/" ]; then
     PATH="$HOME/miniconda3/bin:${PATH}"
 fi
+if [ -d "$HOME/cargo/" ]; then
+    PATH="$HOME/cargo/bin:${PATH}"
+fi
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
