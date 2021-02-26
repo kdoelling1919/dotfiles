@@ -40,11 +40,13 @@ filetype plugin indent on
 "---------------------------------
 call mkdp#util#install()
 let g:os = system('uname')
-if g:os == 'Darwin\n'
+if g:os ==? 'Darwin\n'
     let g:mkdp_path_to_chrome = 'open -a firefox'
 else
     let g:mkdp_path_to_chrome = 'firefox'
 endif
+let g:mkdp_auto_start = 1
+let g:mkdp_auto_close = 0
 " --------------------------------
 " Linters & Fixers
 " --------------------------------
@@ -114,7 +116,9 @@ inoremap jj <ESC>:w<CR>
 " Pasting - indent last pasted
 nnoremap ;; @='<C-V><Esc>A;<C-V><Esc>j'<CR>
 inoremap ;; <Esc>m`A;<Esc>``
-
+" move to beginning or end of line within insert mode
+inoremap <C-E> <ESC>A
+inoremap <C-A> <ESC>^i
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><ESC> :noh<cr>
 
@@ -185,7 +189,7 @@ augroup vimrc
     autocmd!
     autocmd FileType matlab setlocal commentstring=\%\ %s
     autocmd FileType javascript setlocal commentstring=\%\ %s
-    autocmd CursorHoldI * stopinsert
+    " autocmd CursorHoldI * stopinsert
     " autocmd FileType javascript colorscheme onedark
     autocmd BufEnter *.html :syntax sync fromstart
 augroup END
