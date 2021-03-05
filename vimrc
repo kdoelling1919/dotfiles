@@ -32,6 +32,7 @@ Plugin 'raingo/vim-matlab'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'dense-analysis/ale'
 Plugin 'iamcco/markdown-preview.nvim'
+Plugin 'PeterRincker/vim-argumentative'
 call vundle#end()
 " All of your Plugins must be added before the following line
 filetype plugin indent on
