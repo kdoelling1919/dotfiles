@@ -46,7 +46,7 @@ if g:os ==? 'Darwin\n'
 else
     let g:mkdp_path_to_chrome = 'firefox'
 endif
-let g:mkdp_auto_start = 1
+let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 0
 " --------------------------------
 " Linters & Fixers
