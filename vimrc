@@ -122,7 +122,8 @@ inoremap <C-E> <ESC>A
 inoremap <C-A> <ESC>^i
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><ESC> :noh<cr>
-
+" make big header comments
+nnoremap <Leader>h :center 80<CR>0r#<Esc>60A<Space><Esc>a#<Esc>hd78<bar>YppVr#kk.
 "Cursor
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
