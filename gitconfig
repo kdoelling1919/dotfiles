@@ -7,3 +7,5 @@
 	email = kd889@nyu.edu
 [core]
   filemode = false
+[init]
+	defaultBranch = main
