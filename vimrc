@@ -66,7 +66,7 @@ let g:ale_fixers = {
 let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_save = 1
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
 command! ALEToggleFixer execute "let g:ale_fix_on_save = get(g:, 'ale_fix_on_save', 0) ? 0 : 1"
 " --------------------------------
 " Pretty things
@@ -102,7 +102,7 @@ set ignorecase      " Ignore case when searching...
 set smartcase       " ...except when serach query contains a capital letter
 set autoread        " Auto load files if they change on disc
 map <Leader>p :set paste<CR><esc>"*p:set nopaste<cr>
-map <Leader>y "*y  )
+map <Leader>y "*y
 map <Leader><Leader> :w<CR>
 map <Leader>q :wq<CR>
 map <Leader>j <Plug>(ale_next_wrap)
@@ -124,6 +124,10 @@ inoremap <C-A> <ESC>^i
 map <silent> <leader><ESC> :noh<cr>
 " make big header comments
 nnoremap <Leader>h :center 80<CR>0r#<Esc>60A<Space><Esc>a#<Esc>hd78<bar>YppVr#kk.
+" Add todo code and cross off todo items
+nnoremap <Leader>to i**TODO**:
+nnoremap <Leader>td :sno/**TODO**:/~~**TODO**:~~/<Enter>
+nnoremap <Leader>f :ALEFix<CR>
 "Cursor
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"

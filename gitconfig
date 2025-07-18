@@ -3,9 +3,10 @@
 	smudge = git-lfs smudge %f
 	required = true
 [user]
-	name = kdoelling1919
-	email = kd889@nyu.edu
+	name = kdoellin
+	email = keith.doelling@pasteur.fr
 [core]
-  filemode = false
+    filemode = false
+    autocrlf = input
 [init]
 	defaultBranch = main
